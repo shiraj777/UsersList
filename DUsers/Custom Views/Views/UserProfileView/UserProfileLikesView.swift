@@ -9,8 +9,10 @@ import UIKit
 
 class UserProfileLikesView: UIView {
 
-    let numberOfLikesLabel = DUTitleLabel(textAlignment: .left, fontSize: 14)
-    let likesLabel = DUTitleLabel(textAlignment: .center, fontSize: 14)
+    let totalLikesIcon      = DUAvatarImageView(isNotCircle: true)
+    let numberOfLikesLabel  = DUTitleLabel(textAlignment: .left, fontSize: 20, weight: .extrabold)
+    let likesLabel          = DUTitleLabel(textAlignment: .center, fontSize: 15, weight: .bold)
+    let stackView           = UIStackView(frame: .zero)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,19 +43,32 @@ class UserProfileLikesView: UIView {
         let numberOfLikes       = numberOfLikesArray.reduce(0, +)
         numberOfLikesLabel.text = "\(numberOfLikes)"
         
+        totalLikesIcon.image = Images.totalLicksIcon
+        totalLikesIcon.clipsToBounds = false
     }
     
     private func configure() {
-        addSubviews(likesLabel, numberOfLikesLabel)
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(likesLabel)
+        stackView.addArrangedSubview(numberOfLikesLabel)
+        
+        addSubviews(stackView, totalLikesIcon)
+        
         
         NSLayoutConstraint.activate([
-            likesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            likesLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            likesLabel.heightAnchor.constraint(equalToConstant: 16),
             
-            numberOfLikesLabel.topAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 5),
-            numberOfLikesLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            numberOfLikesLabel.heightAnchor.constraint(equalToConstant: 16)
+            
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -20),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            totalLikesIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            totalLikesIcon.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 8),
+            totalLikesIcon.heightAnchor.constraint(equalToConstant: 35),
+            totalLikesIcon.widthAnchor.constraint(equalToConstant: 35),
+            
+            
         ])
     }
 }

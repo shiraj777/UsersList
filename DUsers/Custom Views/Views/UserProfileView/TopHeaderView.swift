@@ -10,8 +10,8 @@ import UIKit
 class TopHeaderView: UIView {
 
     let profilreImageView   = DUAvatarImageView(frame: .zero)
-    let fullNameLabel       = DUTitleLabel(textAlignment: .center, fontSize: 14)
-    let emailLabel          = DUBodyLabel(textAlignment: .center)
+    let fullNameLabel       = DUTitleLabel(textAlignment: .center, fontSize: 20, weight: .extrabold)
+    let emailLabel          = DUBodyLabel(textAlignment: .center, fontSize: 14, weight: .regular)
     
     var user: User?
     
@@ -20,10 +20,6 @@ class TopHeaderView: UIView {
         
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor    = DUColors.blue
-        
-        layer.cornerRadius = 30
-        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        
         configure()
     }
     
@@ -59,18 +55,18 @@ class TopHeaderView: UIView {
         profilreImageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            profilreImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            profilreImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -60),
             profilreImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             profilreImageView.heightAnchor.constraint(equalToConstant: 100),
             profilreImageView.widthAnchor.constraint(equalTo: profilreImageView.heightAnchor),
 
             fullNameLabel.topAnchor.constraint(equalTo: profilreImageView.bottomAnchor, constant: 12),
             fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            fullNameLabel.heightAnchor.constraint(equalToConstant: 18),
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 22),
 
             emailLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 8),
             emailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            emailLabel.heightAnchor.constraint(equalToConstant: 16),
+            emailLabel.heightAnchor.constraint(equalToConstant: 20),
 
         ])
     }

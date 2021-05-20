@@ -9,18 +9,21 @@ import UIKit
 
 class HeaderUserProfileView: UIView {
 
-    
-    let firstNameLabel      = DUTitleLabel(textAlignment: .left, fontSize: 14)
+    let firstNameLabel      = DUTitleLabel(textAlignment: .left, fontSize: 18, weight: .extrabold)
     var topView             = TopHeaderView(frame: .zero)
     var likesView           = UserProfileLikesView(frame: .zero)
+    var circleView          = UIView(frame: .zero)
      
     var posts: [Post] = []
     var user: User?
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
+        translatesAutoresizingMaskIntoConstraints = false
         configure()
+        configureCircleView()
     }
     
     
@@ -29,9 +32,7 @@ class HeaderUserProfileView: UIView {
     }
     
     
-    convenience init(posts: [Post]) {
-        self.init(frame: .zero)
-        
+    func set(posts: [Post]) {        
         self.posts              = posts
         self.user               = posts.count > 0 ? posts[0].owner : nil
         
@@ -42,24 +43,38 @@ class HeaderUserProfileView: UIView {
     }
     
     
+    func configureCircleView() {
+        circleView.backgroundColor = .systemBackground
+        circleView.translatesAutoresizingMaskIntoConstraints   = false
+        circleView.layer.cornerRadius = 50
+        circleView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+    
+    }
+    
+    
     private func configure() {
-        addSubviews(topView, likesView, firstNameLabel)
-        
+        addSubviews(topView, circleView, likesView, firstNameLabel)
+                
         NSLayoutConstraint.activate([
             topView.topAnchor.constraint(equalTo: self.topAnchor),
             topView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 220),
+            topView.heightAnchor.constraint(equalToConstant: screenHeight/2.7),
             
-            likesView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20),
+            circleView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -50),
+            circleView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            circleView.widthAnchor.constraint(equalToConstant: screenWidth),
+            circleView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
+            
+            likesView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -10),
             likesView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             likesView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             likesView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-            likesView.heightAnchor.constraint(equalToConstant: 80),
+            likesView.heightAnchor.constraint(equalToConstant: 100),
 
             firstNameLabel.topAnchor.constraint(equalTo: likesView.bottomAnchor, constant: 20),
-            firstNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            firstNameLabel.heightAnchor.constraint(equalToConstant: 18),
+            firstNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            firstNameLabel.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 }
