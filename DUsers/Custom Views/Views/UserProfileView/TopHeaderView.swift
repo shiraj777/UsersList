@@ -10,8 +10,8 @@ import UIKit
 class TopHeaderView: UIView {
 
     let profilreImageView   = DUAvatarImageView(frame: .zero)
-    let fullNameLabel       = DUTitleLabel(textAlignment: .center, fontSize: 20, weight: .extrabold)
-    let emailLabel          = DUBodyLabel(textAlignment: .center, fontSize: 14, weight: .regular)
+    let fullNameLabel       = DUTitleLabel(textAlignment: .center, fontSize: 18, weight: .extrabold)
+    let emailLabel          = DUBodyLabel(textAlignment: .center, fontSize: 12, weight: .regular)
     
     var user: User?
     
@@ -55,19 +55,16 @@ class TopHeaderView: UIView {
         profilreImageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            profilreImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -60),
+            profilreImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -screenHeight/20),
             profilreImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            profilreImageView.heightAnchor.constraint(equalToConstant: 100),
+            profilreImageView.heightAnchor.constraint(equalToConstant: screenHeight/9),
             profilreImageView.widthAnchor.constraint(equalTo: profilreImageView.heightAnchor),
 
-            fullNameLabel.topAnchor.constraint(equalTo: profilreImageView.bottomAnchor, constant: 12),
+            fullNameLabel.topAnchor.constraint(equalTo: profilreImageView.bottomAnchor, constant: screenHeight/85),
             fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            fullNameLabel.heightAnchor.constraint(equalToConstant: 22),
 
-            emailLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 8),
+            emailLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: screenHeight/150),
             emailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            emailLabel.heightAnchor.constraint(equalToConstant: 20),
-
         ])
     }
 

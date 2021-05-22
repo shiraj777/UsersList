@@ -11,14 +11,17 @@ class PostCell: UITableViewCell {
 
     static let reuseID      = "PostCell"
     let avatarImageView     = DUAvatarImageView(frame: .zero)
-    let titleLabel          = DUTitleLabel(textAlignment: .left, fontSize: 18, weight: .bold)
-    let subtitleLabel       = DUBodyLabel(textAlignment: .left, fontSize: 16, weight: .lite)
-    let likesLabel          = DUBodyLabel(textAlignment: .left, fontSize: 16, weight: .lite)
-    let numberOfLikesLabel  = DUTitleLabel(textAlignment: .left, fontSize: 18, weight: .bold)
+    let titleLabel          = DUTitleLabel(textAlignment: .left, fontSize: 16, weight: .bold)
+    let subtitleLabel       = DUBodyLabel(textAlignment: .left, fontSize: 14, weight: .lite)
+    let likesLabel          = DUBodyLabel(textAlignment: .left, fontSize: 14, weight: .lite)
+    let numberOfLikesLabel  = DUTitleLabel(textAlignment: .left, fontSize: 16, weight: .bold)
+    let titleStackView      = UIStackView(frame: .zero)
+    let likesStackView      = UIStackView(frame: .zero)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
+        configureStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -40,35 +43,43 @@ class PostCell: UITableViewCell {
     }
     
     
+    private func configureStackView() {
+        let stackViews = [titleStackView, likesStackView]
+        for stackView in stackViews {
+            stackView.axis = .vertical
+            stackView.distribution = .equalSpacing
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.spacing = screenHeight/200
+        }
+        
+        titleStackView.addArrangedSubview(titleLabel)
+        titleStackView.addArrangedSubview(subtitleLabel)
+        
+        likesStackView.addArrangedSubview(numberOfLikesLabel)
+        likesStackView.addArrangedSubview(likesLabel)
+    }
+    
+    
     private func configure() {
         likesLabel.textColor            = DUColors.blue
         numberOfLikesLabel.textColor    = DUColors.blue
         
-        addSubviews(avatarImageView, titleLabel, subtitleLabel, numberOfLikesLabel, likesLabel)
+        addSubviews(avatarImageView, titleStackView, likesStackView)
         
-        let padding: CGFloat = 20
-        
+        let padding: CGFloat    = screenWidth/15
         NSLayoutConstraint.activate([
             avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 60),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 60),
+            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            avatarImageView.heightAnchor.constraint(equalToConstant: screenHeight/14),
+            avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 4),
-            titleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: numberOfLikesLabel.leadingAnchor, constant: -padding),
-            
-            subtitleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 12),
-            subtitleLabel.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: -4),
-            subtitleLabel.widthAnchor.constraint(equalToConstant: frame.width / 2),
-            
-            numberOfLikesLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            numberOfLikesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
-            numberOfLikesLabel.widthAnchor.constraint(equalToConstant: 50),
-            
-            likesLabel.leadingAnchor.constraint(equalTo: numberOfLikesLabel.leadingAnchor),
-            likesLabel.trailingAnchor.constraint(equalTo: numberOfLikesLabel.trailingAnchor),
-            likesLabel.centerYAnchor.constraint(equalTo: subtitleLabel.centerYAnchor),
+            titleStackView.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+            titleStackView.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: screenWidth/28),
+            titleStackView.trailingAnchor.constraint(equalTo: likesStackView.leadingAnchor, constant: -padding),
+  
+            likesStackView.centerYAnchor.constraint(equalTo: titleStackView.centerYAnchor),
+            likesStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            likesStackView.widthAnchor.constraint(equalToConstant: screenWidth/6),
         ])
     }
 }

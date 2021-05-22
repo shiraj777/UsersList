@@ -51,7 +51,7 @@ class UserProfileVC: DUDataLoadingVC {
     func configureTableView() {
         tableView.separatorStyle = .none
         tableView.frame = view.bounds
-        tableView.rowHeight = 100
+        tableView.rowHeight = screenHeight/9.2
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
@@ -66,7 +66,6 @@ class UserProfileVC: DUDataLoadingVC {
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: screenHeight/1.9),
-            
             
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

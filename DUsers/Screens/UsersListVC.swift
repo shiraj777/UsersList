@@ -43,7 +43,7 @@ class UsersListVC: DUDataLoadingVC {
         view.addSubview(tableView)
         
         tableView.frame = view.bounds
-        tableView.rowHeight = 80
+        tableView.rowHeight = screenHeight/9.2
         tableView.delegate = self
         tableView.dataSource = self
         tableView.removeExcessCells()

@@ -10,8 +10,8 @@ import UIKit
 class UserProfileLikesView: UIView {
 
     let totalLikesIcon      = DUAvatarImageView(isNotCircle: true)
-    let numberOfLikesLabel  = DUTitleLabel(textAlignment: .left, fontSize: 20, weight: .extrabold)
-    let likesLabel          = DUTitleLabel(textAlignment: .center, fontSize: 15, weight: .bold)
+    let numberOfLikesLabel  = DUTitleLabel(textAlignment: .left, fontSize: 18, weight: .extrabold)
+    let likesLabel          = DUTitleLabel(textAlignment: .center, fontSize: 13, weight: .bold)
     let stackView           = UIStackView(frame: .zero)
 
     override init(frame: CGRect) {
@@ -59,16 +59,13 @@ class UserProfileLikesView: UIView {
         
         NSLayoutConstraint.activate([
             
-            
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -20),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            totalLikesIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            totalLikesIcon.centerYAnchor.constraint(equalTo: centerYAnchor),
             totalLikesIcon.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 8),
-            totalLikesIcon.heightAnchor.constraint(equalToConstant: 35),
-            totalLikesIcon.widthAnchor.constraint(equalToConstant: 35),
-            
-            
+            totalLikesIcon.heightAnchor.constraint(equalToConstant: screenHeight/28),
+            totalLikesIcon.widthAnchor.constraint(equalTo: totalLikesIcon.heightAnchor, constant: screenWidth/80),
         ])
     }
 }

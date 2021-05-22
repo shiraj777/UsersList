@@ -28,7 +28,7 @@ class DUBodyLabel: UILabel {
    
     
     private func configure() {
-        textColor                           = .secondaryLabel
+        textColor                           = DUColors.bolyColor
         adjustsFontForContentSizeCategory   = true
         adjustsFontSizeToFitWidth           = true
         minimumScaleFactor                  = 0.75

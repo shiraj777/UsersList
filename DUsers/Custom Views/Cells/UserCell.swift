@@ -38,18 +38,17 @@ class UserCell: UITableViewCell {
         addSubviews(avatarImageView, usernameLabel)
         
         accessoryType           = .disclosureIndicator
-        let padding: CGFloat    = 12
+        let padding: CGFloat    = screenWidth/15
         
         NSLayoutConstraint.activate([
             avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 60),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 60),
+            avatarImageView.heightAnchor.constraint(equalToConstant: screenHeight/14),
+            avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
             
             usernameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 24),
+            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: screenWidth/28),
             usernameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            usernameLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

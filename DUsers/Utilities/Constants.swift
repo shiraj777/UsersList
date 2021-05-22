@@ -26,5 +26,6 @@ enum DUFontName: String {
 
 
 enum DUColors {
-    static let blue = #colorLiteral(red: 0.368627451, green: 0.4823529412, blue: 1, alpha: 1)
+    static let blue = #colorLiteral(red: 0.368627451, green: 0.4823529412, blue: 0.9254901961, alpha: 1)
+    static let bolyColor = #colorLiteral(red: 0.2352941176, green: 0.2352941176, blue: 0.2352941176, alpha: 1)
 }
